@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import NavMenu from "./NavMenu";
 import {
   AppBar,
   Toolbar,
@@ -94,7 +95,7 @@ export default function TopNav({ themeMode, lightMode, darkMode }) {
         disableSwipeToOpen={false}
         PaperProps={{ style: { minWidth: "50vw" } }}
       >
-        <span>Navigation</span>
+        <NavMenu open={open} />
       </SwipeableDrawer>
       <Dialog
         open={dialogueOpen}

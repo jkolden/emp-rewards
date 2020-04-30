@@ -1,19 +1,23 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 
-import CarouselExample from "../components/Carousel";
+import { Button } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+
+import Card from "../components/Card";
+import Data from "../assets/static/Data";
 
 import { UserContext } from "../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    flexGrow: 1,
   },
+
+  appBarSpacer: theme.mixins.toolbar,
 
   content: {
     flexGrow: 1,
-    height: "100vh",
     overflow: "auto",
   },
 }));
@@ -24,12 +28,22 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-
-      <main className={classes.content}>
-        <CarouselExample />
-      </main>
-    </div>
+    <React.Fragment>
+      <div className={classes.appBarSpacer} />
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        justify="space-around"
+        alignItems="center"
+        className={classes.root}
+      >
+        {Data.filter((star) => star.name === "Edward Norton").map((star) => (
+          <Grid key={star.name}>
+            <Card star={star} />
+          </Grid>
+        ))}
+      </Grid>
+    </React.Fragment>
   );
 }

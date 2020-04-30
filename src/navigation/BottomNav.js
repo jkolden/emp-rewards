@@ -8,16 +8,11 @@ import {
   Badge,
 } from "@material-ui/core";
 
-import { FlightsContext } from "../context/FlightsContext";
-
 import Settings from "@material-ui/icons/Settings";
 import PieChartIcon from "@material-ui/icons/PieChart";
 import Home from "@material-ui/icons/Home";
-import FlightIcon from "@material-ui/icons/Flight";
 
 function BottomNav({ val, onChange }) {
-  const { flights } = useContext(FlightsContext);
-  const openFlights = flights.filter((flight) => flight.status !== "complete");
   return (
     <BottomNavigation value={val} onChange={(e, tab) => onChange(tab)}>
       <BottomNavigationAction
@@ -25,16 +20,6 @@ function BottomNav({ val, onChange }) {
         to="/"
         label="Home"
         icon={<Home />}
-      />
-      <BottomNavigationAction
-        component={Link}
-        to="/flights"
-        label="Flights"
-        icon={
-          <Badge badgeContent={openFlights.length} color="secondary">
-            <FlightIcon />
-          </Badge>
-        }
       />
 
       <BottomNavigationAction
